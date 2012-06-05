@@ -12,7 +12,7 @@
 class GratisDNS {
   private $username;
   private $password;
-  public $admin_url = 'https://ssl.gratisdns.dk/editdomains4.phtml';
+  public $admin_url = 'https://oldsystem.gratisdns.dk/editdomains4.phtml';
   public $curl = null;
   public $domain = null;
   public $domains = null;
@@ -170,6 +170,11 @@ class GratisDNS {
 
   function deleteDomain($domain) {
     $html = $this->_request(array('action' => 'deleteprimarydnsnow', 'user_domain' => $domain));
+    return $this->_response($html);
+  }
+
+  function deleteSecDomain($domain) {
+    $html = $this->_request(array('action' => 'deletesecondarydns', 'user_domain' => $domain));
     return $this->_response($html);
   }
 
